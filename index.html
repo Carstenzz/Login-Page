@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: monospace;
+            background-color: #101720;
+            color: white;
+            overflow: hidden;
+        }
+        .login{
+            box-sizing: border-box;
+            height: 30rem;
+            width: 40rem;
+            padding: 50px 0;
+            padding-right: 20rem;
+            border-radius: .5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            background: url(assets/backgound.jpg);
+            background-size: cover;
+            animation: upndown 10s infinite;
+            /* box-shadow: 0 0 1px rgb(162, 162, 5); */
+        }
+        .title{
+            font-weight: 100;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px yellow;
+        }
+        .inputContainer{
+            height: 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .inputdiv{
+            position: relative;
+        }
+        .inputdiv::before{
+            content: "";
+            height: 1px;
+            width: 150px;
+            background: linear-gradient(90deg, rgba(255,221,0,0) 0%, rgba(255,255,0,1) 50%, rgba(203,255,0,0) 100%);
+            position: absolute;
+            top: 100%;
+            left: 100%;
+            opacity: 0;
+            transition: .3s;
+        }
+        input{
+            box-sizing: border-box;
+            width: 15rem;
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid #0006225e;
+            color: white;
+            font-family: monospace;
+            padding: 0.5rem;
+            transition: .3s;
+        }
+        input:focus{
+            border: none;
+            outline: none;
+        }
+        #pass{
+            padding-right: 25px;
+        }
+        label{
+            position: absolute;
+            top: 50%;
+            transform: translate(3px, -50%);
+            left: 0;
+            transition: 0.2s ease-in-out;
+        }
+        .show{
+            position: absolute;
+            right: 0;
+            border: 0;
+            background-color: transparent;
+            top: 50%;
+            transform: translate(-3px, -50%);
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+        .inputdiv:has(input:focus)::before{
+            left: 0;
+            opacity: 1;
+        }
+        input:hover+label,
+        input:focus+label,
+        input:valid+label{
+            top: -0.5rem;
+        }
+
+        
+        .loginButton{
+            padding: 10px 30px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            position: relative;
+            transition: .5s .5s;
+        }
+        .buttonBackground{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 3px rgb(83, 83, 30) double;
+            border-radius: 5px;
+            transition: .5s ease-in;
+            clip-path: polygon(0 0,10% 0, 10% 50%, 90% 50%, 90% 0, 100% 0, 100% 100%, 90% 100%, 90% 50%, 10% 50%, 10% 100%, 0 100%);
+        }
+        .loginButton:hover,
+        .loginButton:focus{
+            outline: none;
+            box-shadow: 0 0 10px inset rgba(255, 255, 0, 0.762);
+        }
+        .loginButton:focus .buttonBackground,
+        .loginButton:hover .buttonBackground{
+            border: 3px rgba(255, 255, 0, 0.762) double;
+            clip-path: polygon(0 0,50% 0, 50% 50%, 50% 50%, 50% 0, 100% 0, 100% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 100%, 0 100%);
+        }
+
+        .circle{
+            height: 700px;
+            width: 700px;
+            position: absolute;
+            z-index: -1;
+            mask-image: url(assets/mask-image.png);
+            -webkit-mask-image: url(assets/mask-image.png);
+            mask-size: cover;
+            -webkit-mask-size: cover;
+            border-radius: 50%;
+            animation: rotate 20s infinite linear;
+            display: block;
+            place-items: center;
+            /* background: linear-gradient(rgb(135, 135, 0) 0%, rgba(115, 141, 0, 0.44) 25%, rgb(135, 135, 0) 50%, rgba(141, 129, 0, 0.456) 75%, rgb(189, 189, 46) 100%); */
+            opacity: 0.3;
+        }
+        .circle::before{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: url(assets/yellow.jpeg);
+            animation: rotate 20s infinite linear;
+            background-size: cover;
+        }
+        .cover{
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            z-index: -1;
+            backdrop-filter: blur(150px);
+        }
+
+
+        @keyframes upndown {
+            0%{background-position: 0% 0%;}
+            50%{background-position: 10% 10%;}
+            100%{background-position: 0% 0%;}
+        }
+
+        @keyframes rotate {
+            0%{
+                rotate: 0;
+            }
+            100%{
+                rotate: 360deg;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="circle"></div>
+    <div class="cover"></div>
+    <form class="login">
+        <h1 class="title">LOGIN</h1>
+            <div class="inputContainer">
+                <div class="inputdiv">
+                    <input type="text" name="username" id="uname" required>
+                    <label for="uname">Username</label>
+                </div>
+                <div class="inputdiv">
+                    <input type="password" name="pass" id="pass" required>
+                    <label for="pass">Password</label>
+                    <span class="material-symbols-outlined show" onclick="change(this)">
+                        visibility_off
+                    </span>
+                </div>
+            </div>
+                <button type="submit" class="loginButton">
+                    <H3>Login</H3>
+                    <div class="buttonBackground"></div>
+            </button>
+    </form>
+
+    
+
+    <script>
+        const char = "!#$%&\\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+        const uname = document.querySelector("#uname")
+        const pass = document.querySelector("#pass")
+        const circle = document.querySelector(".circle")
+        const button = document.querySelector(".loginButton")
+        let showed = false
+        let readyclicked = true
+        let value
+
+        const unamePos = uname.getBoundingClientRect()
+        const passPos = pass.getBoundingClientRect()
+        const buttonPos = button.getBoundingClientRect()
+        uname.addEventListener('focus', ()=>{
+            circle.animate({
+                    left : (unamePos.left - circle.clientHeight/2) + "px",
+                    top : (unamePos.top - circle.clientWidth/2) + "px"
+                }, {duration:500, fill:"forwards"})
+        })
+        pass.addEventListener('focus', ()=>{
+            circle.animate({
+                    left : (passPos.left - circle.clientHeight/2) + "px",
+                    top : (passPos.top - circle.clientWidth/2) + "px"
+                }, {duration:500, fill:"forwards"})
+        })
+        button.addEventListener('focus', ()=>{
+            circle.animate({
+                    left : (buttonPos.left - circle.clientHeight/2) + "px",
+                    top : (buttonPos.top - circle.clientWidth/2) + "px"
+                }, {duration:500, fill:"forwards"})
+        })
+
+        function change(button){
+            if(readyclicked){
+                if(!showed){
+                    button.innerHTML = '<span class="material-symbols-outlined" style="font-size: 17px;">visibility</span>'
+                    value = pass.value;
+                    pass.value = pass.value.split("").map(() => "•").join("")
+                    setTimeout(()=>{pass.type = "text"}, 1)
+                    for(let i = 0; i < value.length*2 + 20; i++){
+                        setTimeout(()=>{
+                            pass.value = pass.value.split("").map((letter, index) => {
+                                if(index <= (i-20)/2) return value[index]
+                                else if (index <= i/2) return char[Math.floor(Math.random() * 93)]
+                                else return "•"
+                            }).join("")
+                        }, 25 * i)
+                    }
+                    pass.value = value
+                    setTimeout(()=>{readyclicked = true}, 25 * (value.length*2 + 20) + 2)
+                } 
+                else {
+                    button.innerHTML = '<span class="material-symbols-outlined" style="font-size: 17px;">visibility_off</span>'
+                    value = pass.value;
+                    for(let i = 0; i < value.length*2 + 20; i++){
+                        setTimeout(()=>{
+                            pass.value = pass.value.split("").map((letter, index) => {
+                                if(index <= (i-20)/2) return "•"
+                                else if (index <= i/2) return char[Math.floor(Math.random() * 93)]
+                                else return value[index]
+                            }).join("")
+                        }, 25 * i)
+                    }
+                    setTimeout(()=>{
+                        pass.type = "password"
+                        pass.value = value
+                    }, (value.length*2 + 20) * 25 + 1)
+                    setTimeout(()=>{readyclicked = true}, 25 * (value.length*2 + 20) + 2)
+                }
+                readyclicked = false
+                showed = !showed
+            }
+        }
+
+        document.addEventListener("pointermove", e =>{
+            if(uname === document.activeElement){}
+            else if(pass === document.activeElement){}
+            else if(button === document.activeElement){}
+            else 
+                circle.animate({
+                    left : (e.clientX - circle.clientHeight/2) + "px",
+                    top : (e.clientY - circle.clientWidth/2) + "px"
+                }, {duration:3000, fill:"forwards"})
+        })
+    </script>
+
+</body>
+</html>
